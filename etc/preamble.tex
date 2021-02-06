@@ -48,45 +48,18 @@
 % -----------  Images -----------
 \graphicspath{{images/}{img/}{figures/}{fig/}}  % Путь к папкам с картинками
 \newcommand{\figL}[3]{%      Для быстрой вставки картинок
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=#2\textwidth]{#1}
-    \label{fig:#3}
-\end{figure}%
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=#2\textwidth]{#1}
+        \label{fig:#3}
+    \end{figure}%
 }
 \newcommand{\fig}[2]{%    
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=#2\textwidth]{#1}
-\end{figure}%
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=#2\textwidth]{#1}
+    \end{figure}%
 }
-
-% ----------- Math and theorems -----------
-\theoremstyle{plain}
-\newtheorem{theorem}[subsection]{Теорема}
-\NewDocumentEnvironment{Theorem}{o}
-{\IfNoValueTF{#1}
-    {\theorem\addcontentsline{toc}{subsection}
-        {\protect\numberline{\thesubsection}Theorem}}
-    {\theorem[#1]\addcontentsline{toc}
-        {subsection}{\protect\numberline{\thesubsection}Theorem (#1)}}%
-    \ignorespaces}
-{\endtheorem}
-
-\newtheorem{proposition}[subsection]{Prop.}
-\newtheorem{lemma}{Лемма}[section]
-\newtheorem{sug}{Sug.}[section]
-
-\theoremstyle{definition} % "Определение"
-\newtheorem{definition}{Определение}
-\newtheorem{corollary}{Corol.}[subsection]
-\newtheorem{problem}{Problem}[section]
-
-\theoremstyle{remark} % "Примечание"
-\newtheorem*{solution}{Solution}
-\newtheorem*{example}{Пример}
-\newtheorem*{remark}{Примечание}
-\newtheorem*{claim}{Утверждение}
 
 % ----------- Math short-cats
 \newcommand{\R}{\ensuremath{\mathbb{R}}}
@@ -101,3 +74,62 @@
 \usepackage{amsmath}
 \newcommand{\F}{\ensuremath{\mathcal{F} }}
 \DeclareMathOperator{\FDU}{FDU}
+
+% ----------- Math and theorems -----------
+\usepackage[many]{tcolorbox}
+\usepackage{mdframed}
+\usepackage[dvipsnames]{xcolor}
+
+\newtheorem{lemma}{Лемма}[section]
+\newtheorem{claim}[lemma]{Утверждение}
+\newtheorem*{remark}      {Замечание}
+\newtheorem*{next1}      {Следствие 1}
+\newtheorem*{next2}      {Следствие 2}
+\newtheorem{theorem}[lemma]{Теорема}
+% \newenvironment{theorem}%
+\tcolorboxenvironment{theorem}{
+    enhanced,
+    borderline={0.8pt}{0pt}{gray!70},
+    borderline={0.4pt}{2pt}{black},
+    boxrule=0.4pt,
+    colback=YellowGreen!70!white!30,
+    coltitle=black,
+    sharp corners
+}
+% {\begin{mdframed}[backgroundcolor=black!30!white!30,linewidth=2pt]
+%         \setlength{\topsep}{-\parskip}\setlength{\partopsep}{0pt}
+%         \begin{theorem_}}%
+%             {\end{theorem_}\end{mdframed}}
+
+\theoremstyle{definition}
+\newtheorem{definition}[lemma]{Определение}
+\tcolorboxenvironment{definition}{
+    enhanced,
+    borderline={0.8pt}{0pt}{gray!70},
+    borderline={0.4pt}{2pt}{black},
+    boxrule=0.4pt,
+    colback=pink!70!white!30,
+    coltitle=black,
+    sharp corners
+}
+\newcommand{\mdef}[1]
+{\! \textit{\uwave{\textcolor{red!10!black}{#1}}}}
+% http://dkhramov.dp.ua/Comp.LatexCyrillicFonts#.XMrWLegzaUk
+
+
+%https://tex.stackexchange.com/questions/223694/how-to-draw-a-text-box-with-shadow-borders-in-latex
+
+\newtheorem{exercise_}[lemma]{Пример}
+\newenvironment{exercise}%
+{\begin{tcolorbox}[enhanced,width=6.4in,center upper,drop fuzzy shadow southwest,
+            colframe=red!50!black,colback=orange!100!yellow!50!white!30]
+        \begin{exercise_}}%
+            {\end{exercise_}\end{tcolorbox}}
+
+\usepackage{dashrule}
+\renewenvironment{proof}{\smallskip{\noindent\Large
+        \color{red!50!black}\itshape$\lhd$ \normalsize Начало доказательства
+        \hdashrule[0.5ex]{11cm}{0.5mm}{3mm 3pt 1mm 2pt}\hspace{1cm} }
+    \small\itshape}{{\color{red!50!black}
+            \hdashrule[0.5ex]{10.5cm}{0.5mm}{3mm 3pt 1mm 2pt}
+            \normalsize Конец доказательства \Large$\rhd$}}
