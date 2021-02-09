@@ -85,21 +85,12 @@
 \newtheorem*{remark}      {Замечание}
 \newtheorem*{next1}      {Следствие 1}
 \newtheorem*{next2}      {Следствие 2}
-\newtheorem{theorem}[lemma]{Теорема}
-% \newenvironment{theorem}%
-\tcolorboxenvironment{theorem}{
-    enhanced,
-    borderline={0.8pt}{0pt}{gray!70},
-    borderline={0.4pt}{2pt}{black},
-    boxrule=0.4pt,
-    colback=YellowGreen!70!white!30,
-    coltitle=black,
-    sharp corners
-}
-% {\begin{mdframed}[backgroundcolor=black!30!white!30,linewidth=2pt]
-%         \setlength{\topsep}{-\parskip}\setlength{\partopsep}{0pt}
-%         \begin{theorem_}}%
-%             {\end{theorem_}\end{mdframed}}
+\newtheorem{theorem_}[lemma]{Теорема}
+\newenvironment{theorem}%
+{\begin{mdframed}[backgroundcolor=black!30!white!30]
+        % \setlength{\topsep}{-\parskip}\setlength{\partopsep}{0pt}
+        \begin{theorem_}}%
+            {\end{theorem_}\end{mdframed}}
 
 \theoremstyle{definition}
 \newtheorem{definition}[lemma]{Определение}
