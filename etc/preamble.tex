@@ -67,6 +67,17 @@
 \newcommand{\Cx}{\ensuremath{\mathbb{C}}}
 \newcommand{\Z}{\ensuremath{\mathbb{Z}}}
 \newcommand{\E}{\ensuremath{\mathbb{E}}}
+\def\CB{\mathcal{B}}
+\def\CC{\mathcal{C}}
+\def\CE{\mathcal{E}}
+\def\CR{\mathcal{R}}
+\def\CA{\mathcal{A}}
+% \def\CF{\mathcal{F}}
+\def\CG{\mathcal{G}}
+\def\CS{\mathcal{S}}
+\def\CD{\mathcal{D}}
+\def\CH{\mathcal{H}}
+\def\CP{\mathcal{P}}
 
 % You can write your commands below
 \usepackage{gensymb}
@@ -80,11 +91,13 @@
 \usepackage{mdframed}
 \usepackage[dvipsnames]{xcolor}
 
-\newtheorem{lemma}{Лемма}[section]
-\newtheorem{claim}[lemma]{Утверждение}
 \newtheorem*{remark}      {Замечание}
+\newtheorem*{next0}      {Следствие}
 \newtheorem*{next1}      {Следствие 1}
 \newtheorem*{next2}      {Следствие 2}
+\theoremstyle{definition}
+\newtheorem{lemma}{Лемма}[section]
+\newtheorem{claim}[lemma]{Утверждение}
 \newtheorem{theorem_}[lemma]{Теорема}
 \newenvironment{theorem}%
 {\begin{mdframed}[backgroundcolor=black!30!white!30]
@@ -103,6 +116,7 @@
     coltitle=black,
     sharp corners
 }
+\usepackage{ulem}
 \newcommand{\mdef}[1]
 {\! \textit{\uwave{\textcolor{red!10!black}{#1}}}}
 % http://dkhramov.dp.ua/Comp.LatexCyrillicFonts#.XMrWLegzaUk
@@ -120,7 +134,13 @@
 \usepackage{dashrule}
 \renewenvironment{proof}{\smallskip{\noindent\Large
         \color{red!50!black}\itshape$\lhd$ \normalsize Начало доказательства
-        \hdashrule[0.5ex]{11cm}{0.5mm}{3mm 3pt 1mm 2pt}\hspace{1cm} }
+        \hdashrule[0.5ex]{11cm}{0.5mm}{3mm 3pt 1mm 2pt} }
     \small\itshape}{{\color{red!50!black}
             \hdashrule[0.5ex]{10.5cm}{0.5mm}{3mm 3pt 1mm 2pt}
             \normalsize Конец доказательства \Large$\rhd$}}
+
+% Обводка кружочком множеств
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing,shapes.misc}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+        \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
